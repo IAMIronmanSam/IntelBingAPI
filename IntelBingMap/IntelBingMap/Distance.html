@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+      
+        <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapicore.js"></script>
+      <script type="text/javascript">
+
+          var map = null;
+          var directionsManager = null;
+
+          function GetMap() {
+              // Initialize the map
+              map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk" });
+              Microsoft.Maps.loadModule('Microsoft.Maps.Directions', { callback: directionsModuleLoaded });
+
+          }
+
+
+
+          function directionsModuleLoaded() {
+              // Initialize the DirectionsManager
+              directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+
+              // Create start and end waypoints and add them to the route
+              var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: "Seattle, WA" });
+              var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: "New York, NY" });
+
+              directionsManager.addWaypoint(startWaypoint);
+              directionsManager.addWaypoint(endWaypoint);
+
+              // Set directions options
+              directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.transit });
+              directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('itineraryDiv') });
+
+              // Specify a handler for when the directions are calculated
+              Microsoft.Maps.Events.addHandler(directionsManager, 'directionsUpdated', displayMessage);
+              Microsoft.Maps.Events.addHandler(directionsManager, 'itineraryStepClicked', displayStepMessage);
+              Microsoft.Maps.Events.addHandler(directionsManager, 'directionsError', displayError);
+
+              // Calculate directions, which displays a route on the map
+              directionsManager.calculateDirections();
+
+
+          }
+
+
+          function displayError(e) {
+              var md = new Windows.UI.Popups.MessageDialog(e.message);
+              md.showAsync();
+          }
+
+
+          function displayMessage(e) {
+              var md = new Windows.UI.Popups.MessageDialog("Click a step in the itinerary to display extra transit information.");
+              md.showAsync();
+              
+          }
+
+
+          function displayStepMessage(e) {
+
+              if (e.step.iconType == Microsoft.Maps.Directions.IconType.bus) {
+                  var md = new Windows.UI.Popups.MessageDialog("The name of the transit agency for this step is: " + e.step.transitLine.agencyName + ".  For information about this transit agency and transit line, go to " + e.step.transitLine.agencyUrl + ".");
+                  md.showAsync();
+              }
+              else {
+                  var md = new Windows.UI.Popups.MessageDialog("The step that was clicked is not a transit step.");
+                  md.showAsync();
+              }
+          }
+
+
+
+      </script>
+   </head>
+   <body onload="GetMap();">
+      <div id='mapDiv' style="position:relative; width:400px; height:400px;"></div>       
+      <div id='itineraryDiv' style="position:relative; width:400px;"></div>
+   </body>
+</html>​

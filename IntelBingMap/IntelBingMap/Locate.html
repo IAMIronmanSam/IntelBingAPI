@@ -21,7 +21,7 @@
                 credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
                 height: 800,
                 width: 1276,
-                zoom: 8,
+                zoom: 14,
                 mapTypeId: Microsoft.Maps.MapTypeId.road,
                 showMapTypeSelector: false
             };
@@ -38,7 +38,9 @@
                 var longitude = position.coords.longitude;
                 console.log(latitude);
                 console.log(longitude);
-               // document.write(latitude);
+                // document.write(latitude);
+                var md = new Windows.UI.Popups.MessageDialog("Your Current  Latitude:" + latitude + " Longitude: " + longitude);
+                md.showAsync();
                 
                 var location = new Microsoft.Maps.Location(latitude, longitude);
                 var pushpin = new Microsoft.Maps.Pushpin(location);
