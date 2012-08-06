@@ -4,13 +4,25 @@
       <title></title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-      
+      <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>  
         <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapicore.js"></script>
-      <script type="text/javascript">
 
+      <script type="text/javascript">
+          (function () {
+              var app = WinJS.Application;
+
+              // This function responds to all application activations.
+              app.onactivated = function (eventObject) {
+                  if (eventObject.detail.kind === Windows.ApplicationModel.Activation.ActivationKind.launch) {
+            
+                      WinJS.UI.processAll();
+                  }
+              };
+
+              app.start();
           var map = null;
           var directionsManager = null;
-
+          Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: GetMap });
           function GetMap() {
               // Initialize the map
               map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk" });
@@ -72,11 +84,11 @@
               }
           }
 
-
+          })();
 
       </script>
    </head>
-   <body onload="GetMap();">
+   <body>
       <div id='mapDiv' style="position:relative; width:400px; height:400px;"></div>       
       <div id='itineraryDiv' style="position:relative; width:400px;"></div>
    </body>

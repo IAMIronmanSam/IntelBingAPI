@@ -3,29 +3,41 @@
    <head>
       <title>Search</title>
      
-       <meta charset="utf-8">
+      
        <!-- <script type="text/javascript" src="js/Mapscript.js"></script>-->
       <!-- <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapi-->
-       
-       <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapicore.js"></script>
+     <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>  
+     <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapicore.js"></script> 
        <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapiModules.js"></script>
-       <script>Microsoft.Maps.registerModule('clusterModule');</script>
-        <script type="text/javascript" src="js/V7ClientSideClustering.js"></script>
+       
        
    </head>
    <body>
       <div id='mapDiv'></div> 
        <script type="text/javascript">
+           //console.log("eNTERED");
+           //window.onload(GetMap());
+          (function () {
+              var app = WinJS.Application;
 
-           window.onload(GetMap());
-           var map;
+              // This function responds to all application activations.
+              app.onactivated = function (eventObject) {
+                  if (eventObject.detail.kind === Windows.ApplicationModel.Activation.ActivationKind.launch) {
+            
+                      WinJS.UI.processAll();
+                  }
+              };
 
+              app.start();
+              var map;
+           Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: GetMap });
            function GetMap() {
-
+              
+               console.log("eNTERED MAP");
                map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
 
                    credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
-                 //  center: new Microsoft.Maps.Location(47.5, -122.3),
+                   center: new Microsoft.Maps.Location(13, 80),
                    zoom: 9,
                    height: 800,
                    width: 1276,
@@ -44,7 +56,7 @@
 
                var searchRequest = {
                    what: "pizza",
-                   where: "Seattle",
+                   where: "chennai",
                    count: 10,
                    startIndex: 0,
                    callback: searchCallback,
@@ -57,14 +69,14 @@
            }
 
            function searchCallback(searchResponse, userData) {
-               console.log("The first search result is " + searchResponse.searchResults[0].name + ".");
+               console.log("The first search result is " + searchResponse.searchResults[2].name + ".");
            }
 
 
            function searchError(searchRequest) {
                console.log("An error occurred.");
            }
-
+          })();
       </script>
    </body>
 </html>
