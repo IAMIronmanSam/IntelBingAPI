@@ -37,8 +37,8 @@
                map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
 
                    credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
-                   center: new Microsoft.Maps.Location(13, 80),
-                   zoom: 9,
+                   center: new Microsoft.Maps.Location(40.7142, -74.0064),
+                   zoom: 12,
                    height: 800,
                    width: 1276,
                    showMapTypeSelector: false
@@ -56,7 +56,7 @@
 
                var searchRequest = {
                    what: "pizza",
-                   where: "chennai",
+                   where: "Newyork",
                    count: 10,
                    startIndex: 0,
                    callback: searchCallback,
@@ -80,9 +80,20 @@
                    for (var i = 0; i < searchResults.length; i++) {
                        //search_createMapPin(searchResults[i]);
                        console.log(JSON.stringify(searchResponse.searchResults));
-                       console.log("The first search result is " + searchResponse.searchResults[i].name + ".");
-                       console.log("The first search Latitude is " + searchResponse.searchResults[i].location.latitude + ".");
-                       console.log("The first search Longitude is " + searchResponse.searchResults[i].location.longitude + ".");
+                       console.log("----------------------------------------------");
+                       console.log("Name " + searchResponse.searchResults[i].name + ".");
+                       console.log("Latitude  " + searchResponse.searchResults[i].location.latitude + ".");
+                       console.log("Longitude  " + searchResponse.searchResults[i].location.longitude + ".");
+                       console.log("Address " + searchResponse.searchResults[i].address + ".");
+                       console.log("City " + searchResponse.searchResults[i].city + ".");
+                       console.log("State " + searchResponse.searchResults[i].state + ".");
+                       console.log("Country " + searchResponse.searchResults[i].country + ".");
+                       console.log("PinCode " + searchResponse.searchResults[i].postalCode + ".");
+                       console.log("Phone " + searchResponse.searchResults[i].phone + ".");
+                       console.log("Rating " + searchResponse.searchResults[i].userRating + ".");
+                       console.log("Website " + searchResponse.searchResults[i].website + ".");
+                       console.log("Opeining Hour " + searchResponse.searchResults[i].hoursOfOperation + ".");
+
                        var location = new Microsoft.Maps.Location(searchResponse.searchResults[i].location.latitude, searchResponse.searchResults[i].location.longitude);
                        var pushpin = new Microsoft.Maps.Pushpin(location);
                        map.entities.push(pushpin);
