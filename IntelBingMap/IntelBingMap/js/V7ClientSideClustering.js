@@ -427,4 +427,3 @@ var ClusteredEntityCollection = function (map, options) {
     //Initialize class
     _init();
 };
-Microsoft.Maps.moduleLoaded('clusterModule');

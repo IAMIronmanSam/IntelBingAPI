@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="5779c924-fbe7-4c0f-94dd-1f5acee37e27" Version="1.0.0.0" Publisher="CN=sysdev" />
+  <Identity Name="5779c924-fbe7-4c0f-94dd-1f5acee37e27" Version="1.0.0.0" Publisher="CN=Arivu" />
   <Properties>
     <DisplayName>IntelBingMap</DisplayName>
     <PublisherDisplayName>sysdev</PublisherDisplayName>
@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" StartPage="Search.html">
+    <Application Id="App" StartPage="Pages\input.html">
       <VisualElements DisplayName="IntelBingMap" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="IntelBingMap" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="images\splashscreen.png" />

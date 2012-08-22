@@ -44,23 +44,31 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en</DefaultLanguage>
-    <PackageCertificateKeyFile>IntelBingMap_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>622B648C34A1D2DF334145B250F2B7FB141649D9</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="default.html" />
-    <Content Include="Distance.html" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
+    <Content Include="js\index.js" />
+    <Content Include="js\input.js" />
+    <Content Include="js\Locate.js" />
+    <Content Include="js\navigator.js" />
     <Content Include="js\V7ClientSideClustering.js" />
-    <Content Include="Locate.html" />
-    <Content Include="Search.html" />
+    <Content Include="Pages\Distance.html" />
+    <Content Include="Pages\Index.html" />
+    <Content Include="Pages\input.html" />
+    <Content Include="Pages\Locate.html" />
+    <Content Include="Pages\Search.html" />
+    <Content Include="test\jasmine.js" />
+    <Content Include="test\test.js" />
     <None Include="IntelBingMap_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
