@@ -67,6 +67,7 @@
     <Content Include="Pages\input.html" />
     <Content Include="Pages\Locate.html" />
     <Content Include="Pages\Search.html" />
+    <Content Include="test\code.js" />
     <Content Include="test\jasmine.js" />
     <Content Include="test\test.js" />
     <None Include="IntelBingMap_TemporaryKey.pfx" />
