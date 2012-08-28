@@ -1,9 +1,18 @@
 ﻿body {
+    background-image: url("/images/urban-city.jpg");
+    background-position:center;
+    background-repeat:repeat;
+    
+
 }
 
-#Searching {
-   
-    
+a {
+ 
+	outline: 20px outset #808080;
+outline-offset: 10px; 
+ font-size:30px;
+ background-color:#ace435;
+ 
 }
 
 @media screen and (-ms-view-state: fullscreen-landscape) {
