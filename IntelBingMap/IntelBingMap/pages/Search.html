@@ -3,7 +3,8 @@
    <head>
       <title>Search</title>
      
-      
+      <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" /> 
+       <link href="/css/default.css" rel="stylesheet" /> 
        <!-- <script type="text/javascript" src="js/Mapscript.js"></script>-->
       <!-- <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapi-->
      <script src="//Microsoft.WinJS.1.0.RC/js/base.js"></script>  
@@ -13,11 +14,19 @@
        
    </head>
    <body>
+      
+       <center>
+           <div id="Searching">
+       <input type="text" id="Search" />
+       <input type="submit" value="Find" id="find"/>
+               </div>
+           </center>
       <div id='mapDiv'></div> 
-       hi
+      
        <script type="text/javascript">
            //console.log("eNTERED");
            //window.onload(GetMap());
+          
           (function () {
               var app = WinJS.Application;
 
@@ -30,8 +39,19 @@
               };
 
               app.start();
+             
               var map;
-           Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: GetMap });
+              Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: start });
+              function start() {
+                  var page = WinJS.UI.Pages.define("Search.html", {
+                      ready: function (element, options) {
+
+                          document.getElementById("find").addEventListener("click", GetMap, false);
+                          //document.getElementById("write").addEventListener("click", write, false);
+
+                      }
+                  });
+              }
            function GetMap() {
               
                console.log("eNTERED MAP");
@@ -54,9 +74,10 @@
 
            function searchModuleLoaded() {
                var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-
+               var s = document.getElementById("Search").value;
+               console.log(s);
                var searchRequest = {
-                   what: "pizza",
+                   what: s,
                    where: "Newyork",
                    count: 10,
                    startIndex: 0,

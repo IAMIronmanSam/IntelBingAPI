@@ -61,6 +61,7 @@
     <Content Include="js\input.js" />
     <Content Include="js\Locate.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="js\Search.js" />
     <Content Include="js\V7ClientSideClustering.js" />
     <Content Include="Pages\Distance.html" />
     <Content Include="Pages\Index.html" />

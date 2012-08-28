@@ -31,19 +31,19 @@
     //});
 
   
-    WinJS.UI.Pages.define("/Pages/input.html", {
-        ready: function (element, options) {
-            document.getElementById("input").addEventListener("click", navi, false);
-        }
-    });
+    //WinJS.UI.Pages.define("/Pages/input.html", {
+    //    ready: function (element, options) {
+    //        document.getElementById("input").addEventListener("click", navi, false);
+    //    }
+    //});
 
 
 
-    function navi() {
-        console.log("Able to Navogate");
-        nav.navigate('/Pages/Search.html');
-        console.log("k k");
+    //function navi() {
+    //    console.log("Able to Navogate");
+    //    nav.navigate('/Pages/Search.html');
+    //    console.log("k k");
 
-    }
+    //}
 
 })();

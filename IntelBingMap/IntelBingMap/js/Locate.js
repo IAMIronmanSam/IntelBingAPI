@@ -71,19 +71,19 @@
     //});
 
     
-    WinJS.UI.Pages.define("/Pages/Locate.html", {
-        ready: function (element, options) {
-            document.getElementById("Gointo").addEventListener("click", navil, false);
-        }
-    });
+    //WinJS.UI.Pages.define("/Pages/Locate.html", {
+    //    ready: function (element, options) {
+    //        document.getElementById("Gointo").addEventListener("click", navil, false);
+    //    }
+    //});
 
      
 
-    function navil() {
-        console.log("Able to Navogate");
-        nav.navigate('/Pages/input.html');
-        console.log("k k");
+    //function navil() {
+    //    console.log("Able to Navogate");
+    //    nav.navigate('/Pages/input.html');
+    //    console.log("k k");
 
-    }
+    //}
 
 })();
