@@ -6,7 +6,7 @@
     <!-- Bing Maps references -->
     <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapicore.js"></script>
       <!-- <script src="/js/Locate.js"></script>-->
-    <script src="/js/navigator.js"></script>
+    
     <link href="/css/default.css" rel="stylesheet" />
 
 </head>
@@ -46,6 +46,22 @@
                 console.log(latitude);
                 console.log(longitude);
                 // document.write(latitude);
+                var input = 'http://dev.virtualearth.net/REST/v1/Locations/' + latitude + ',' + longitude + '?o=json&key=AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk';
+                var request = new XMLHttpRequest();
+                request.open('GET', input, false);
+                //request.responseType = "text";
+                request.send();
+                if (request.status == 200) {
+                    var op = (request.response);
+                    console.log(op); 
+                    console.log((request.response).resourceSets[1].length);
+                   
+                  //  console.log(op.authenticationResultCode);//.resources.address.locality);
+                   
+
+                    //console.log(str.resources.address.locality);
+                }
+                else { console.log("Error");}
                 var md = new Windows.UI.Popups.MessageDialog("Your Current  Latitude:" + latitude + " Longitude: " + longitude);
                 md.showAsync();
                 
@@ -53,9 +69,9 @@
                 var pushpin = new Microsoft.Maps.Pushpin(location);
                 map.entities.push(pushpin);
                 map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
-            })
-            
 
+            
+            })
             
         }
 

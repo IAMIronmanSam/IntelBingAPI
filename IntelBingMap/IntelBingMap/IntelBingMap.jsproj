@@ -65,6 +65,7 @@
     <Content Include="Pages\Index.html" />
     <Content Include="Pages\input.html" />
     <Content Include="Pages\Locate.html" />
+    <Content Include="Pages\LocateQuery.html" />
     <Content Include="Pages\Search.html" />
     <Content Include="test\code.js" />
     <Content Include="test\jasmine.js" />
