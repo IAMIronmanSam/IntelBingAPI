@@ -1,9 +1,22 @@
 ﻿body {
-    background-image: url("/images/urban-city.jpg");
+    background-image: url("/images/UrbanCity.jpg");
     background-position:center;
     background-repeat:repeat;
     
 
+}
+h1 {
+	color: #fff;
+	text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+	font: 80px 'ChunkFiveRegular';
+    alignment-adjust:central;
+}
+
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('http://www.midwinter-dg.com/blog_demos/css-text-shadows/fonts/chunkfive-webfont.eot');
+    font-weight: normal;
+    font-style: normal;
 }
 
 aas {

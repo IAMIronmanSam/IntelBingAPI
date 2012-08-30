@@ -19,7 +19,9 @@
            <div id="Searching">
        <input type="text" id="Search" />
        <input type="submit" value="Find" id="find"/>
-       <a href="/Pages/Index.html">Go to My Map</a>
+       
+               <input type="button" value="Home" onClick="parent.location='/pages/Index.html'" style="float:left" />
+               <input type="button" id="close" value="Exit" style="float:right;"/>
                </div>
            </center>
       <div id='mapDiv'></div> 
@@ -27,8 +29,12 @@
        <script type="text/javascript">
            //console.log("eNTERED");
            //window.onload(GetMap());
-          
-          (function () {
+           document.getElementById("close").addEventListener("click", close, false);
+           function close() {
+               window.close();
+           }
+           (function () {
+               console.log("Closing");
               var app = WinJS.Application;
 
               // This function responds to all application activations.

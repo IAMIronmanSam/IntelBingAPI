@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" StartPage="Pages\LocateQuery.html">
+    <Application Id="App" StartPage="Pages\Index.html">
       <VisualElements DisplayName="IntelBingMap" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="IntelBingMap" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="images\splashscreen.png" />

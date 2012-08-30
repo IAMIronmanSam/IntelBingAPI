@@ -52,10 +52,12 @@
     </AppxManifest>
     <Content Include="default.html" />
     <Content Include="images\logo.png" />
+    <Content Include="images\SEO_Robot.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
-    <Content Include="images\urban-city.jpg" />
+    <Content Include="images\UrbanCity.jpg" />
+    <Content Include="images\Urban_City.jpg" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
     <Content Include="js\input.js" />
