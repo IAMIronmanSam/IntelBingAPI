@@ -17,18 +17,22 @@
       
        <center>
            <div id="Searching">
-       <input type="text" id="Search" />
-       <input type="submit" value="Find" id="find"/>
+       <input type="text" id="Search" placeholder="Pizza,Cafe..." />
+       <input type="submit" value="Search" id="find"/>
        
                <input type="button" value="Home" onClick="parent.location='/pages/Index.html'" style="float:left" />
                <input type="button" id="close" value="Exit" style="float:right;"/>
                </div>
+            <div id='mapDiv'></div> 
+           <img src="/images/RoboFlyingt.png"  id="img" style="padding-top:150px;"/>
+           <h1>Your Wishes My Command</h1>
            </center>
-      <div id='mapDiv'></div> 
+     
       
        <script type="text/javascript">
            //console.log("eNTERED");
            //window.onload(GetMap());
+
            document.getElementById("close").addEventListener("click", close, false);
            function close() {
                window.close();
@@ -50,6 +54,7 @@
               var map;
               Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: start });
               function start() {
+                  
                   var page = WinJS.UI.Pages.define("Search.html", {
                       ready: function (element, options) {
 
@@ -60,7 +65,8 @@
                   });
               }
            function GetMap() {
-              
+               //document.getElementById("img").disabled;
+               document.getElementById("img").style.visibility="hidden";
                console.log("eNTERED MAP");
                map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
 
@@ -99,7 +105,7 @@
 
            function searchCallback(searchResponse, userData) {
                console.log("The first search result is " + searchResponse.searchResults[2].name + ".");
-               var md = new Windows.UI.Popups.MessageDialog("The first search result is: " + searchResponse.searchResults[0].name + " in " + searchResponse.searchResults[0].address);
+               var md = new Windows.UI.Popups.MessageDialog("Your Nearby search result is: " + searchResponse.searchResults[0].name + " in " + searchResponse.searchResults[0].address);
                md.showAsync();
 
 

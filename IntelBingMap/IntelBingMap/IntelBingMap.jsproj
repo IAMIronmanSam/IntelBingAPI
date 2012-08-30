@@ -52,6 +52,7 @@
     </AppxManifest>
     <Content Include="default.html" />
     <Content Include="images\logo.png" />
+    <Content Include="images\RoboFlyingt.png" />
     <Content Include="images\SEO_Robot.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
