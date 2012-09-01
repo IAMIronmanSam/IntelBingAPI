@@ -55,23 +55,34 @@
                 console.log(longitude);
                 // document.write(latitude);
                 var input = 'http://dev.virtualearth.net/REST/v1/Locations/' + latitude + ',' + longitude + '?o=json&key=AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk';
+                console.log(typeof (input));
                 var request = new XMLHttpRequest();
                 request.open('GET', input, false);
-                //request.responseType = "text";
+                request.responseType = "json";
                 request.send();
                 if (request.status == 200) {
                     var op = (request.response);
-                    console.log(op); 
+                    console.log(typeof (op));
+                    var obj = eval("(" + op + ')');
+                    var name = JSON.stringify(obj.resourceSets[0].resources[0].name);
+                    console.log(JSON.stringify(obj.resourceSets[0].resources[0].name));
+                    console.log(typeof (obj));
+                    console.log(typeof (k));
+                    var size = obj.resourceSets[0].estimatedTotal;
+                    console.log(size);
                     //console.log((request.response).resourceSets[1].length);
-                   
+                    for (var i = 0; i < size; i++)
+                    {
+                        console.log(JSON.stringify(obj.resourceSets[0].resources[i].name));
+                    }
                   //console.log(op.authenticationResultCode);//.resources.address.locality);
                    
-
+                    var md = new Windows.UI.Popups.MessageDialog("Your Current  Location:" + name);
+                    md.showAsync();
                     //console.log(str.resources.address.locality);
                 }
                 else { console.log("Error");}
-                var md = new Windows.UI.Popups.MessageDialog("Your Current  Latitude:" + latitude + " Longitude: " + longitude);
-                md.showAsync();
+                
                 
                 var location = new Microsoft.Maps.Location(latitude, longitude);
                 var pushpin = new Microsoft.Maps.Pushpin(location);
