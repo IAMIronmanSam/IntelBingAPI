@@ -23,71 +23,74 @@
     </div>
 
     <script>
-        document.getElementById("close").addEventListener("click", close, false);
-        function close() {
-            window.close();
-        }
-        Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: initMap });
-        function initMap() {
-            var map;
-
-            var mapOptions =
+document.getElementById("close").addEventListener("click", close, false);
+   function close()
             {
-                credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
-                height: 700,
-                width: 1176,
-                zoom: 14,
-                mapTypeId: Microsoft.Maps.MapTypeId.road,
-                showMapTypeSelector: false
-            };
+              window.close();
+            }
 
-            map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
-            // Initialize the location provider
-            var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
+ Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: initMap });
+ function initMap()
+ {
+           var map;
+           var mapOptions =
+                {
+                    credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
+                    height: 700,
+                    width: 1176,
+                    zoom: 14,
+                    mapTypeId: Microsoft.Maps.MapTypeId.road,
+                    showMapTypeSelector: false
+                 };
 
-            // Get the user's current location
-           // geoLocationProvider.getCurrentPosition();
-            
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                console.log(latitude);
-                console.log(longitude);
-                // document.write(latitude);
-                var input = 'http://dev.virtualearth.net/REST/v1/Locations/' + latitude + ',' + longitude + '?o=json&key=AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk';
-                console.log(typeof (input));
-                var request = new XMLHttpRequest();
-                request.open('GET', input, false);
-                request.responseType = "json";
-                request.send();
-                if (request.status == 200) {
-                    var op = (request.response);
-                    console.log(typeof (op));
-                    var obj = eval("(" + op + ')');
-                    var name = JSON.stringify(obj.resourceSets[0].resources[0].name);
-                    console.log(JSON.stringify(obj.resourceSets[0].resources[0].name));
-                    console.log(typeof (obj));
-                    console.log(typeof (k));
-                    var size = obj.resourceSets[0].estimatedTotal;
-                    console.log(size);
-                    //console.log((request.response).resourceSets[1].length);
-                    for (var i = 0; i < size; i++)
+    map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
+                             // Initialize the location provider
+    var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
+
+                         // Get the user's current location           
+    navigator.geolocation.getCurrentPosition(function (position)
+                {
+                            var latitude = position.coords.latitude;
+                            var longitude = position.coords.longitude;
+                            console.log(latitude);
+                            console.log(longitude);
+                            // document.write(latitude);
+                            var input = 'http://dev.virtualearth.net/REST/v1/Locations/' + latitude + ',' + longitude + '?o=json&key=AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk';
+                            console.log(typeof (input));
+                            var request = new XMLHttpRequest();
+                            request.open('GET', input, false);
+                            request.responseType = "json";
+                            request.send();
+                    if (request.status == 200)
                     {
-                        console.log(JSON.stringify(obj.resourceSets[0].resources[i].name));
-                    }
-                  //console.log(op.authenticationResultCode);//.resources.address.locality);
-                   
-                    var md = new Windows.UI.Popups.MessageDialog("Your Current  Location:" + name);
-                    md.showAsync();
-                    //console.log(str.resources.address.locality);
-                }
-                else { console.log("Error");}
+                                    var op = (request.response);
+                                    console.log(op);
+                                    var obj = eval("(" + op + ')');
+                                    var name = JSON.stringify(obj.resourceSets[0].resources[0].address.adminDistrict2);
+                                    console.log(JSON.stringify(obj.resourceSets[0].resources[0].address.adminDistrict2));
+                                    console.log(typeof (obj));
+                                    console.log(typeof (k));
+                                    var size = obj.resourceSets[0].estimatedTotal;
+                                    console.log(size);
+                  
+                                    for (var i = 0; i < size; i++)
+                                    {
+                                    console.log(JSON.stringify(obj.resourceSets[0].resources[i].name));
+                                    }
+
+                                var md = new Windows.UI.Popups.MessageDialog("Your Current  Location:" + name);
+                                md.showAsync();
+                 }
+                 else
+                  {
+                        console.log("Error");
+                  }
                 
                 
-                var location = new Microsoft.Maps.Location(latitude, longitude);
-                var pushpin = new Microsoft.Maps.Pushpin(location);
-                map.entities.push(pushpin);
-                map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
+                                var location = new Microsoft.Maps.Location(latitude, longitude);
+                                var pushpin = new Microsoft.Maps.Pushpin(location);
+                                map.entities.push(pushpin);
+                                map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
 
             
             })
