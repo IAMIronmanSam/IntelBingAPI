@@ -13,14 +13,11 @@
 </head>
 <body>
     <input type="button" value="Home" onClick="parent.location='/pages/Index.html'" style="float:left" />
-    <center><input type="button" value="Explore" onClick="parent.location='/pages/Search.html'" />
-          
-     <input type="button" id="close" value="Exit" style="float:right;"/></center>
- <div id="mapDiv" style="padding-left:100px; padding-top:50px;padding-bottom:50px;padding-right:70px;">
-       
-       
-     <!--<div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{input: '/Pages/input.html'}"></div>-->
-    </div>
+    <center>
+        <input type="button" value="Explore" onClick="parent.location='/pages/Search.html'" />  
+        <input type="button" id="close" value="Exit" style="float:right;"/>
+    </center> 
+       <div id="mapDiv" style="padding-left:100px; padding-top:50px;padding-bottom:50px;padding-right:70px;"/>
 
     <script>
 document.getElementById("close").addEventListener("click", close, false);

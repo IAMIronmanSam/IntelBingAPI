@@ -51,7 +51,10 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="default.html" />
+    <Content Include="images\horiz.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\Metro-icon1.png" />
+    <Content Include="images\Metro-icons.png" />
     <Content Include="images\RoboFlyingt.png" />
     <Content Include="images\SEO_Robot.png" />
     <Content Include="images\smalllogo.png" />
@@ -59,6 +62,7 @@
     <Content Include="images\storelogo.png" />
     <Content Include="images\UrbanCity.jpg" />
     <Content Include="images\Urban_City.jpg" />
+    <Content Include="images\vert.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
     <Content Include="js\input.js" />

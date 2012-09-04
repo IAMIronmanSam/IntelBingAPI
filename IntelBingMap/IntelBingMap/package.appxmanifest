@@ -14,10 +14,14 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" StartPage="Pages\Search.html">
-      <VisualElements DisplayName="IntelBingMap" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="IntelBingMap" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="images\splashscreen.png" />
+    <Application Id="App" StartPage="Pages\Index.html">
+      <VisualElements DisplayName="Metro Bot" Logo="images\Metro-icon1.png" SmallLogo="images\Metro-icons.png" Description="Intel to BingMap to find Bussiness Places Near by" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" WideLogo="images\horiz.png" />
+        <SplashScreen Image="images\vert.png" />
+        <InitialRotationPreference>
+          <Rotation Preference="portrait" />
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>
