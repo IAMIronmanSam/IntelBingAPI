@@ -30,7 +30,7 @@
                window.close();
            }
            (function () {
-               console.log("Closing");
+               //console.log("Closing");
                var app = WinJS.Application;
 
                // This function responds to all application activations.
@@ -56,108 +56,129 @@
                        }
                    });
                }
-               function GetMap()
-               {
-                   var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
-                   document.getElementById("img").style.visibility = "hidden";
-                   console.log("eNTERED MAP");
-                   var map;
-                   var mapOptions =
-                        {
-                            credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
-                            height: 700,
-                            width: 1176,
-                            zoom: 14,
-                            mapTypeId: Microsoft.Maps.MapTypeId.road,
-                            showMapTypeSelector: false
-                        };
 
-                   map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
-       // Initialize the location provider
-                   var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
-       // Get the user's current location           
-                   navigator.geolocation.getCurrentPosition(function (position)
-                   {
-                       var latitude = position.coords.latitude;
-                       var longitude = position.coords.longitude;
-                       console.log(latitude);
-                       console.log(longitude);
-       //AJAX Request to get Location Name
-                       var input = 'http://dev.virtualearth.net/REST/v1/Locations/' + latitude + ',' + longitude + '?o=json&key=AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk';
-                       console.log(typeof (input));
-                       var request = new XMLHttpRequest();
-                       request.open('GET', input, false);
-                       request.responseType = "json";
-                       request.send();
-                   if (request.status == 200) {
+               function GetMap() {
+                   //var sin = document.getElementById("Search").value;
+                   //if (sin == '' || null) {
+                   //    var md = new Windows.UI.Popups.MessageDialog("Please Refine Your Search");
+                   //    md.showAsync();
+
+                   //}
+                   //else {
+                   //    var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
+                       document.getElementById("img").style.visibility = "hidden";
+                       console.log("eNTERED MAP");
+
+                       var map;
+                       var mapOptions =
+                            {
+                                credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
+                                height: 700,
+                                width: 1176,
+                                zoom: 14,
+                                mapTypeId: Microsoft.Maps.MapTypeId.road,
+                                showMapTypeSelector: false
+                            };
+
+                       map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
+                       // Initialize the location provider
+                       var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(map);
+                       // Get the user's current location           
+                       navigator.geolocation.getCurrentPosition(function (position) {
+                           var latitude = position.coords.latitude;
+                           var longitude = position.coords.longitude;
+                           console.log(latitude);
+                           console.log(longitude);
+                           //AJAX Request to get Location Name
+                           var input = 'http://dev.virtualearth.net/REST/v1/Locations/' + latitude + ',' + longitude + '?o=json&key=AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk';
+                           console.log(typeof (input));
+                           var request = new XMLHttpRequest();
+                           request.open('GET', input, false);
+                           request.responseType = "json";
+                           request.send();
+                           if (request.status == 200) {
                                var op = (request.response);
                                console.log(typeof (op));
                                var obj = eval("(" + op + ')');
                                var name = (obj.resourceSets[0].resources[0].address.adminDistrict2);
                                console.log(JSON.stringify(obj.resourceSets[0].resources[0].adminDistrict2));
                                Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: searchModuleLoaded });
-                       }
-        //Search Module for User Query
-                   function searchModuleLoaded() {
-                           var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                           var s = document.getElementById("Search").value;
-                           console.log(s);
-                        console.log(typeof(name));
-                           var searchRequest = {
-                               what: s,
-                               where:name,
-                               count: 20,
-                               startIndex: 0,
-                               callback: searchCallback,
-                               userData: { name: 'Maps Test User', id: 'XYZ' },
-                               errorCallback: searchError
-
-                           };
-                           searchManager.search(searchRequest);
-                       }
-               
-                   function searchCallback(searchResponse, userData)
-                   {
-                           console.log("The Nearby search result is " + searchResponse.searchResults[2].name + ".");
-                           var md = new Windows.UI.Popups.MessageDialog("Your Nearby search result is: " + searchResponse.searchResults[0].name + " in " + searchResponse.searchResults[0].address);
-                           md.showAsync();
-
-
-                           map.entities.clear();
-                           var searchResults = searchResponse && searchResponse.searchResults;
-                           if (searchResults)
-                           {
-                               for (var i = 0; i < searchResults.length; i++)
-                               {
-                                   console.log(JSON.stringify(searchResponse.searchResults));
-                                   console.log("----------------------------------------------");
-                                   console.log("Name " + searchResponse.searchResults[i].name + ".");
-                                   console.log("Latitude  " + searchResponse.searchResults[i].location.latitude + ".");
-                                   console.log("Longitude  " + searchResponse.searchResults[i].location.longitude + ".");
-                                   console.log("Address " + searchResponse.searchResults[i].address + ".");
-                                   console.log("City " + searchResponse.searchResults[i].city + ".");
-                                   console.log("State " + searchResponse.searchResults[i].state + ".");
-                                   console.log("Country " + searchResponse.searchResults[i].country + ".");
-                                   console.log("PinCode " + searchResponse.searchResults[i].postalCode + ".");
-                                   console.log("Phone " + searchResponse.searchResults[i].phone + ".");
-                                   console.log("Rating " + searchResponse.searchResults[i].userRating + ".");
-                                   console.log("Website " + searchResponse.searchResults[i].website + ".");
-                                   console.log("Opeining Hour " + searchResponse.searchResults[i].hoursOfOperation + ".");
-                //Pin Point the locations
-                                   var location = new Microsoft.Maps.Location(searchResponse.searchResults[i].location.latitude, searchResponse.searchResults[i].location.longitude);
-                                   var pushpin = new Microsoft.Maps.Pushpin(location);
-                                   map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
-                                   map.entities.push(pushpin);
-                               }
+                               //searchModuleLoaded(name);
                            }
+                       })
                        }
+                           //Search Module for User Query
+                           function searchModuleLoaded() {
+                               var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                               var s = document.getElementById("Search").value;
+                               console.log(s);
+                               console.log("-----------------------");
+                               console.log(name);
+                               var searchRequest = {
+                                   what: s,
+                                   where: name,
+                                   count: 20,
+                                   startIndex: 0,
+                                   callback: searchCallback,
+                                   userData: { name: 'Maps Test User', id: 'XYZ' },
+                                   errorCallback: searchError
+
+                               };
+                               searchManager.search(searchRequest);
+                           }
+
+                           function searchCallback(searchResponse, userData) {
+
+                               map.entities.clear();
+                               var searchResults = searchResponse && searchResponse.searchResults;
+                               //try{
+                               if (searchResults) {
+                                   for (var i = 0; i < searchResults.length; i++) {
+                                       console.log(JSON.stringify(searchResponse.searchResults));
+                                       console.log("----------------------------------------------");
+                                       console.log("Name " + searchResponse.searchResults[i].name + ".");
+                                       console.log("Latitude  " + searchResponse.searchResults[i].location.latitude + ".");
+                                       console.log("Longitude  " + searchResponse.searchResults[i].location.longitude + ".");
+                                       console.log("Address " + searchResponse.searchResults[i].address + ".");
+                                       console.log("City " + searchResponse.searchResults[i].city + ".");
+                                       console.log("State " + searchResponse.searchResults[i].state + ".");
+                                       console.log("Country " + searchResponse.searchResults[i].country + ".");
+                                       console.log("PinCode " + searchResponse.searchResults[i].postalCode + ".");
+                                       console.log("Phone " + searchResponse.searchResults[i].phone + ".");
+                                       console.log("Rating " + searchResponse.searchResults[i].userRating + ".");
+                                       console.log("Website " + searchResponse.searchResults[i].website + ".");
+                                       console.log("Opeining Hour " + searchResponse.searchResults[i].hoursOfOperation + ".");
+                                       //Pin Point the locations
+                                       var location = new Microsoft.Maps.Location(searchResponse.searchResults[i].location.latitude, searchResponse.searchResults[i].location.longitude);
+                                       var pushpin = new Microsoft.Maps.Pushpin(location);
+                                       map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
+                                       map.entities.push(pushpin);
+                                   }
+                               }
+                               console.log("The Nearby search result is " + searchResponse.searchResults[2].name + ".");
+                               var md = new Windows.UI.Popups.MessageDialog("Your Nearby search result is: " + searchResponse.searchResults[0].name + " in " + searchResponse.searchResults[0].address);
+                               md.showAsync();
+
+                           }
+                           //catch(Exception)
+                           //{
+                           //    //window.location.reload();
+                           //    var md = new Windows.UI.Popups.MessageDialog("Please Refine Your Search");
+                           //    md.showAsync();
+                           //   // history.go(0);
+                           //}
 
 
-                       function searchError(searchRequest) {
-                           console.log("An error occurred." + searchRequest);
-                       }
-                   })
-               }
+
+                           //}
+
+
+                           function searchError(searchRequest) {
+                               console.log("An error occurred." + searchRequest);
+                           }
+                  
+                   //}
+               
          
           })();
       </script>

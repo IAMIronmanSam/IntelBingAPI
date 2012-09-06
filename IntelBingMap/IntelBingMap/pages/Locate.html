@@ -1,15 +1,11 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Bing Maps Metro style app sample</title>
     <!-- Bing Maps references -->
     <link href="//Microsoft.WinJS.1.0.RC/css/ui-dark.css" rel="stylesheet" />
     <script type="text/javascript" src="ms-appx:///Bing.Maps.JavaScript//js/veapicore.js"></script>
-      <!-- <script src="/js/Locate.js"></script>-->
-    
     <link href="/css/default.css" rel="stylesheet" />
-
 </head>
 <body>
     <input type="button" value="Home" onClick="parent.location='/pages/Index.html'" style="float:left" />
@@ -18,14 +14,12 @@
         <input type="button" id="close" value="Exit" style="float:right;"/>
     </center> 
        <div id="mapDiv" style="padding-left:100px; padding-top:50px;padding-bottom:50px;padding-right:70px;"/>
-
     <script>
 document.getElementById("close").addEventListener("click", close, false);
    function close()
             {
               window.close();
             }
-
  Microsoft.Maps.loadModule('Microsoft.Maps.Map', { callback: initMap });
  function initMap()
  {
@@ -61,40 +55,22 @@ document.getElementById("close").addEventListener("click", close, false);
                     if (request.status == 200)
                     {
                                     var op = (request.response);
-                                    console.log(op);
                                     var obj = eval("(" + op + ')');
                                     var name = JSON.stringify(obj.resourceSets[0].resources[0].address.adminDistrict2);
-                                    console.log(JSON.stringify(obj.resourceSets[0].resources[0].address.adminDistrict2));
-                                    console.log(typeof (obj));
-                                    console.log(typeof (k));
-                                    var size = obj.resourceSets[0].estimatedTotal;
-                                    console.log(size);
-                  
-                                    for (var i = 0; i < size; i++)
-                                    {
-                                    console.log(JSON.stringify(obj.resourceSets[0].resources[i].name));
-                                    }
-
-                                var md = new Windows.UI.Popups.MessageDialog("Your Current  Location:" + name);
-                                md.showAsync();
+                                    var md = new Windows.UI.Popups.MessageDialog("Your Current  Location:" + name);
+                                    md.showAsync();
                  }
                  else
                   {
-                        console.log("Error");
+                                    var md = new Windows.UI.Popups.MessageDialog("Error in loading Map. Please try after some time.");
+                                    md.showAsync();
                   }
-                
-                
-                                var location = new Microsoft.Maps.Location(latitude, longitude);
-                                var pushpin = new Microsoft.Maps.Pushpin(location);
-                                map.entities.push(pushpin);
-                                map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
-
-            
-            })
-            
+                                    var location = new Microsoft.Maps.Location(latitude, longitude);
+                                    var pushpin = new Microsoft.Maps.Pushpin(location);
+                                    map.entities.push(pushpin);
+                                    map.setView({ center: new Microsoft.Maps.Location(latitude, longitude) });
+            })  
         }
-
-
     </script>
 </body>
 </html>
