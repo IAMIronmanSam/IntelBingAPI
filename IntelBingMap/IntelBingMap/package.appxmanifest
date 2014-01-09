@@ -1,28 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="5779c924-fbe7-4c0f-94dd-1f5acee37e27" Version="1.0.0.0" Publisher="CN=Arivu" />
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="5779c924-fbe7-4c0f-94dd-1f5acee37e27" Version="1.1.0.0" Publisher="CN=Arivu" />
   <Properties>
     <DisplayName>IntelBingMap</DisplayName>
     <PublisherDisplayName>sysdev</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2.0</OSMinVersion>
-    <OSMaxVersionTested>6.2.0</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
     <Application Id="App" StartPage="Pages\Index.html">
-      <VisualElements DisplayName="Metro Bot" Logo="images\Metro-icon1.png" SmallLogo="images\Metro-icons.png" Description="Intel to BingMap to find Bussiness Places Near by" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" WideLogo="images\horiz.png" />
-        <SplashScreen Image="images\vert.png" />
-        <InitialRotationPreference>
-          <Rotation Preference="portrait" />
-          <Rotation Preference="landscape" />
-        </InitialRotationPreference>
-      </VisualElements>
+      <m2:VisualElements DisplayName="Metro Bot" Description="Intel to BingMap to find Bussiness Places Near by" BackgroundColor="#464646" ForegroundText="light" Square150x150Logo="images\Metro-icon1.png" Square30x30Logo="images\Metro-icons.png">
+        <m2:DefaultTile Wide310x150Logo="images\horiz.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:InitialRotationPreference>
+          <m2:Rotation Preference="portrait" />
+          <m2:Rotation Preference="landscape" />
+        </m2:InitialRotationPreference>
+        <m2:SplashScreen Image="images\vert.png" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>

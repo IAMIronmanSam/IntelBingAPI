@@ -10,7 +10,7 @@
 
         var mapOptions =
         {
-            credentials: "AoUv-FMpF-A_zutBXGaP2Eh_GmpST6K5hyxByrOoY9uSPNY5TLT5dINTJbzyWCnk",
+            credentials: "AjtUzWJBHlI3Ma_Ke6Qv2fGRXEs0ua5hUQi54ECwfXTiWsitll4AkETZDihjcfeI",
             height: 800,
             width: 1276,
             zoom: 14,
